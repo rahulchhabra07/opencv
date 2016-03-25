@@ -7338,7 +7338,7 @@ static bool ipp_cvtColor( Mat &src, OutputArray _dst, int code, int dcn )
 #if IPP_VERSION_X100 >= 700
         case CV_BGR2BGRA: case CV_RGB2BGRA: case CV_BGRA2BGR:
         case CV_RGBA2BGR: case CV_RGB2BGR: case CV_BGRA2RGBA:
-            CV_Assert( scn == 3 || scn == 4 );
+            CV_Assert( scn == ( code == CV_BGR2BGRA || code == CV_RGB2BGRA || code == CV_RGB2BGR ? 3 : 4) );
             dcn = code == CV_BGR2BGRA || code == CV_RGB2BGRA || code == CV_BGRA2RGBA ? 4 : 3;
             _dst.create( sz, CV_MAKETYPE(depth, dcn));
             dst = _dst.getMat();
